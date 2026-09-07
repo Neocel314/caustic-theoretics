@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { sitePath } from '../lib/writing';
 const { title, description = 'Writing by Neocel.', active = '' } = Astro.props;
 const sections = ['Archive', 'About'];
 const SiteHeading = active === 'index' ? 'h1' : 'p';
@@ -12,7 +13,7 @@ const SiteHeading = active === 'index' ? 'h1' : 'p';
     <title>{title ? `${title} — Caustic Theoretics` : 'Caustic Theoretics — Neocel'}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Neocel" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={sitePath('/favicon.svg')} />
   </head>
   <body>
     <svg class="type-effects" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
@@ -37,11 +38,11 @@ const SiteHeading = active === 'index' ? 'h1' : 'p';
     <div class="site-shell">
       <header>
         <div class="masthead">
-          <SiteHeading class="site-name"><a href="/" aria-label="Caustic Theoretics"><span class="title-line title-first">Caustic</span><span class="title-line">Theoretics<span class="title-stop">.</span></span><span class="registered-mark" aria-hidden="true">®</span></a></SiteHeading>
-          <p class="author-name">by <a href="/about/">neocel</a></p>
+          <SiteHeading class="site-name"><a href={sitePath('/')} aria-label="Caustic Theoretics"><span class="title-line title-first">Caustic</span><span class="title-line">Theoretics<span class="title-stop">.</span></span><span class="registered-mark" aria-hidden="true">®</span></a></SiteHeading>
+          <p class="author-name">by <a href={sitePath('/about/')}>neocel</a></p>
         </div>
         <nav aria-label="Main navigation">
-          {sections.map(section => <a href={`/${section.toLowerCase()}/`} aria-current={active === section.toLowerCase() ? 'page' : undefined}><span aria-hidden="true">[</span>{section}<span aria-hidden="true">]</span></a>)}
+          {sections.map(section => <a href={sitePath(`/${section.toLowerCase()}/`)} aria-current={active === section.toLowerCase() ? 'page' : undefined}><span aria-hidden="true">[</span>{section}<span aria-hidden="true">]</span></a>)}
         </nav>
       </header>
       <main id="main"><slot /></main>

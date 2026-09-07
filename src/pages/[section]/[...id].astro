@@ -1,7 +1,7 @@
 ---
 import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import { allWriting, dateLabel } from '../../lib/writing';
+import { allWriting, dateLabel, sitePath } from '../../lib/writing';
 export async function getStaticPaths() { return (await allWriting()).map(post => ({ params: { section: post.data.category, id: post.id }, props: { post } })); }
 const { post } = Astro.props;
 const { Content } = await render(post);
@@ -11,6 +11,6 @@ const { Content } = await render(post);
     <h1>{post.data.title}</h1>
     <p class="entry-meta"><time datetime={post.data.date.toISOString()}>{dateLabel(post.data.date)}</time> / Neocel</p>
     <div class="prose"><Content /></div>
-    <p class="back-link"><a href={`/${post.data.category}/`}>← {post.data.category}</a></p>
+    <p class="back-link"><a href={sitePath(`/${post.data.category}/`)}>← {post.data.category}</a></p>
   </article>
 </Layout>
