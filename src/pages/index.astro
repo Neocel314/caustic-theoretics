@@ -1,0 +1,10 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PostList from '../components/PostList.astro';
+import { allWriting } from '../lib/writing';
+const posts = await allWriting();
+---
+<Layout active="index">
+  <h2 class="list-heading">Recent writings</h2>
+  <PostList posts={posts.slice(0, 12)} />
+</Layout>

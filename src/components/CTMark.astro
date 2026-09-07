@@ -1,0 +1,21 @@
+---
+// A typographic mark with horizontal scan lines and a restrained dot-matrix field.
+const dots = Array.from({ length: 13 }, (_, row) =>
+  Array.from({ length: 53 }, (_, col) => {
+    const x = 16 + col * 14;
+    const y = 8 + row * 12;
+    const radius = ((x - 380) / 367) ** 2 + ((y - 80) / 76) ** 2;
+    return radius < 1 && (x < 262 || x > 498) ? { x, y, size: radius < .45 ? 3 : 1.5 } : null;
+  }).filter(Boolean)
+).flat();
+---
+<svg viewBox="0 0 760 168" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <defs>
+    <mask id="ct-stripes"><rect width="760" height="168" fill="black" />{Array.from({ length: 12 }, (_, row) => <rect x="0" y={row * 14} width="760" height="9" fill="white" />)}</mask>
+  </defs>
+  {dots.map(dot => dot && <rect x={dot.x} y={dot.y} width={dot.size} height={dot.size} fill="currentColor" />)}
+  <g mask="url(#ct-stripes)" fill="currentColor">
+    <path d="M370 17H307L280 43V126L307 152H370V119H323L316 112V57L323 50H370Z" />
+    <path d="M382 17H492V50H454V152H419V50H382Z" />
+  </g>
+</svg>

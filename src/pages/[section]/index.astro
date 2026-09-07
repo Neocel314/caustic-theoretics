@@ -1,0 +1,16 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostList from '../../components/PostList.astro';
+import { allWriting } from '../../lib/writing';
+export function getStaticPaths() { return ['essays','notes','fragments','projects','archive'].map(section => ({ params: { section } })); }
+const section = Astro.params.section!;
+const all = await allWriting();
+const posts = section === 'archive' ? all : all.filter(post => post.data.category === section);
+const title = section[0].toUpperCase()+section.slice(1);
+const years = [...new Set(posts.map(post => post.data.date.getUTCFullYear()))];
+---
+<Layout title={title} active={section}>
+  <h1 class="list-heading">{title}</h1>
+  {section === 'archive' ? years.map(year => <section class="archive-year"><h2>{year}</h2><PostList posts={posts.filter(post => post.data.date.getUTCFullYear() === year)} /></section>) : <PostList posts={posts} />}
+  {!posts.length && <p>No posts yet.</p>}
+</Layout>

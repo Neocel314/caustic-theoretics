@@ -1,0 +1,99 @@
+:root {
+  color-scheme: dark;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  line-height: 1.7;
+  background: #000;
+  color: #fff;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: #000; color: #fff; }
+a { color: inherit; text-underline-offset: 4px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 1px solid #fff; outline-offset: 5px; }
+::selection { color: #000; background: #fff; }
+.site-shell { width: min(100% - 48px, 760px); margin: 64px auto 140px; }
+.masthead { text-align: center; }
+.site-name {
+  margin: 0;
+  font-family: 'Arial Black', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: clamp(2.6rem, 12.8vw, 6.6rem);
+  line-height: .83;
+  font-weight: 900;
+  letter-spacing: -.095em;
+  text-transform: uppercase;
+  -webkit-text-stroke: .018em currentColor;
+  text-shadow: .9px .6px 1.8px currentColor, -.75px .9px 2.2px currentColor;
+  filter: blur(.4px);
+}
+.type-effects { position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; }
+.site-name a { position: relative; display: inline-block; text-decoration: none; }
+.title-line { position: relative; display: block; white-space: nowrap; }
+.title-stop { position: absolute; left: 100%; top: 0; letter-spacing: 0; }
+.title-first { padding-right: 1.03em; text-align: right; }
+.registered-mark {
+  position: absolute;
+  right: .05em;
+  top: -.12em;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.3em;
+  font-weight: 700;
+  -webkit-text-stroke: .035em currentColor;
+  line-height: 1;
+  letter-spacing: 0;
+  transform: rotate(-17deg);
+  pointer-events: none;
+}
+.author-name { margin: 18px 0 0; font-size: .875rem; }
+.author-name a { text-decoration: none; }
+.author-name a:hover { text-decoration: underline; }
+nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 28px; margin-top: 25px; font-size: .875rem; }
+nav a { text-decoration: none; white-space: nowrap; }
+nav a > span:first-child { margin-right: 5px; }
+nav a > span:last-child { margin-left: 5px; }
+nav a:hover, nav a[aria-current='page'] { background: #000; color: #fff; text-decoration: underline; }
+main { margin-top: 62px; }
+h1, h2, h3 { font-family: inherit; font-weight: bold; line-height: 1.5; }
+h1 { font-size: 1.375rem; margin: 0 0 16px; }
+h2 { font-size: 1.125rem; }
+h3 { font-size: 1rem; }
+.list-heading { display: flex; align-items: center; gap: 12px; font-size: .875rem; font-weight: bold; margin: 0 0 28px; }
+.list-heading::before { content: '>'; }
+.list-heading::after { content: ''; border-top: 1px dashed #fff; flex: 1; margin-left: 8px; }
+.post-list { list-style: none; padding: 0; margin: 0; }
+.post-list li { margin: 0 0 21px; line-height: 1.7; padding-left: 17px; position: relative; }
+.post-list li::before { content: '+'; position: absolute; left: 0; font-size: .875rem; }
+.post-list time { display: inline-block; font-size: .875rem; margin-right: 22px; }
+.post-list a { text-decoration: none; }
+.post-list a:hover, .post-list a:focus-visible { text-decoration: underline; }
+.archive-year { margin: 0 0 46px; }
+.archive-year h2 { font-size: .875rem; font-weight: normal; margin: 0 0 24px; }
+.entry-meta { font-size: .875rem; margin: 0 0 45px; }
+.prose { overflow-wrap: anywhere; }
+.prose p { margin: 0 0 26px; }
+.prose h2, .prose h3 { margin: 40px 0 20px; }
+.prose blockquote { margin: 28px 0; padding-left: 24px; border-left: 1px solid #fff; }
+.prose pre { overflow-x: auto; padding: 16px; border: 1px solid #fff; }
+.prose code { font-family: inherit; }
+.prose img { max-width: 100%; height: auto; }
+.prose table { display: block; overflow-x: auto; border-collapse: collapse; }
+.prose th, .prose td { padding: 10px; border: 1px solid #fff; }
+.prose hr { border: 0; border-top: 1px solid #fff; margin: 35px 0; }
+.back-link { margin-top: 56px; font-size: .875rem; }
+.skip { position: absolute; left: 24px; top: -100px; background: #000; }
+.skip:focus { top: 16px; }
+@media (max-width: 600px) {
+  .site-shell { width: calc(100% - 32px); margin-top: 28px; margin-bottom: 80px; }
+  nav { gap: 12px 24px; font-size: .8125rem; }
+  main { margin-top: 56px; }
+  .post-list li { margin-bottom: 25px; }
+  .post-list time { display: block; margin: 0 0 3px; }
+}
+@media print {
+  :root { color-scheme: light; background: #fff; color: #000; }
+  body { background: #fff; color: #000; }
+  .site-shell { width: 100%; margin: 0; }
+  nav, .skip, .back-link { display: none; }
+  main { margin-top: 40px; }
+}
+

@@ -1,0 +1,50 @@
+---
+import '../styles/global.css';
+const { title, description = 'Writing by Neocel.', active = '' } = Astro.props;
+const sections = ['Archive', 'About'];
+const SiteHeading = active === 'index' ? 'h1' : 'p';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title ? `${title} — Caustic Theoretics` : 'Caustic Theoretics — Neocel'}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Neocel" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <svg class="type-effects" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="heading-ink-bleed" x="-5%" y="-20%" width="110%" height="140%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="3" seed="17" result="paper" />
+          <feDisplacementMap in="SourceGraphic" in2="paper" scale="1.25" xChannelSelector="R" yChannelSelector="G" result="rough" />
+          <feGaussianBlur in="rough" stdDeviation=".3" result="ink" />
+          <feColorMatrix in="paper" type="saturate" values="0" />
+          <feComponentTransfer>
+            <feFuncR type="linear" slope=".75" intercept=".25" />
+            <feFuncG type="linear" slope=".75" intercept=".25" />
+            <feFuncB type="linear" slope=".75" intercept=".25" />
+            <feFuncA type="linear" slope="0" intercept="1" />
+          </feComponentTransfer>
+          <feComposite in2="ink" operator="in" result="grain" />
+          <feBlend in="ink" in2="grain" mode="multiply" />
+        </filter>
+      </defs>
+    </svg>
+    <a class="skip" href="#main">Skip to writing</a>
+    <div class="site-shell">
+      <header>
+        <div class="masthead">
+          <SiteHeading class="site-name"><a href="/" aria-label="Caustic Theoretics"><span class="title-line title-first">Caustic</span><span class="title-line">Theoretics<span class="title-stop">.</span></span><span class="registered-mark" aria-hidden="true">®</span></a></SiteHeading>
+          <p class="author-name">by <a href="/about/">neocel</a></p>
+        </div>
+        <nav aria-label="Main navigation">
+          {sections.map(section => <a href={`/${section.toLowerCase()}/`} aria-current={active === section.toLowerCase() ? 'page' : undefined}><span aria-hidden="true">[</span>{section}<span aria-hidden="true">]</span></a>)}
+        </nav>
+      </header>
+      <main id="main"><slot /></main>
+    </div>
+  </body>
+</html>
